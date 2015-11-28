@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CBFFBCCB-8976-4968-972F-C54AE8AC74AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WaitTimes.Services</RootNamespace>
+    <AssemblyName>WaitTimes.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Framework.DependencyInjection.4.0.0-beta8-157\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Autofac.Framework.DependencyInjection, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.Framework.DependencyInjection.4.0.0-beta8-157\lib\net45\Autofac.Framework.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Framework.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Framework.DependencyInjection.Abstractions.1.0.0-beta8-15574\lib\net45\Microsoft.Framework.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DisneyLandIoCModule.cs" />
+    <Compile Include="Models\GatherResults.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThemeParks\AnimalKingdomService.cs" />
+    <Compile Include="ThemeParks\BaseThemeParkService.cs" />
+    <Compile Include="ThemeParks\DisneyCaliforniaAdventureService.cs" />
+    <Compile Include="ThemeParks\DisneyLandParisService.cs" />
+    <Compile Include="ThemeParks\DisneyLandService.cs" />
+    <Compile Include="ThemeParks\EpcotService.cs" />
+    <Compile Include="ThemeParks\HollywoodStudiosService.cs" />
+    <Compile Include="ThemeParks\IThemeParkService.cs" />
+    <Compile Include="ThemeParks\MagicKingdomService.cs" />
+    <Compile Include="ThemeParks\ThemeParkOrchestrator.cs" />
+    <Compile Include="ThemeParks\WaltDisneyStudiosService.cs" />
+    <Compile Include="Weather\WeatherService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WaitTimes.Core\WaitTimes.Core.csproj">
+      <Project>{74495757-75c0-466f-bc38-6d95e1709d6a}</Project>
+      <Name>WaitTimes.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Gatherers\WaitTimes.Gatherers.csproj">
+      <Project>{286c07db-a360-40da-a035-f67e5f51e3af}</Project>
+      <Name>WaitTimes.Gatherers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Models\WaitTimes.Models.csproj">
+      <Project>{bf281a71-2313-4120-8eca-5f140d71dcc0}</Project>
+      <Name>WaitTimes.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Persistance\WaitTimes.Persistance.csproj">
+      <Project>{3d50080f-456e-4a7a-a4ec-9fa102fcb2e5}</Project>
+      <Name>WaitTimes.Persistance</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

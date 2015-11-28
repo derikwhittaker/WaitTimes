@@ -1,0 +1,16 @@
+﻿{
+    "Locations": [
+        {
+            "ZipCode":  "32830",
+            "Url": "32830.json"
+        },
+        {
+            "ZipCode":  "92802",
+            "Url": "92802.json"
+        },
+        {
+             "ZipCode":  "77700",
+            "Url": "France/Paris.json"
+        }
+    ]
+}
