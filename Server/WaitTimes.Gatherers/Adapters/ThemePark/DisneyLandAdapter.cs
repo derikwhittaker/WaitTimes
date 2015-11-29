@@ -1,3 +1,5 @@
+using WaitTimes.Core.Configuration;
+
 namespace WaitTimes.Gatherers.Adapters.ThemePark
 {
     public interface IDisneyLandAdapter : ITimeGathererAdapter
@@ -8,7 +10,9 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
     public class DisneyLandAdapter : BaseTimeGathererAdapter, IDisneyLandAdapter
     {
 
-        public override string Endpoint => "http://localhost:3000/api/disneyLand";
+        public DisneyLandAdapter(ITypedConfiguration typedConfiguration) : base(typedConfiguration)
+        {
+        }
 
         public override string Source => "DisneyLand";
     }

@@ -46,7 +46,7 @@ function init(app, io) {
     });
 
     app.get('/api/disneyLand', function (req, res) {
-        var disneyApi = disneyAPI.DisneyLand;
+        var disneyApi = disneyAPI.Disneyland;
         GetWaitTimes(res, disneyApi, "Disney Land");        
     });
     

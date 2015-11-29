@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 
 namespace WaitTimes.Core.Configuration
 {
     public class ThemeParkSchedules
     {
-        public ThemeParkSchedules()
-        {
-            Schedules = new List<ThemeParkSchedule>();
-        }
-
-        public List<ThemeParkSchedule> Schedules { get; set; }
+        public List<ThemeParkSchedule> Schedules { get; set; } = new List<ThemeParkSchedule>();
     }
 
     public class ThemeParkSchedule
@@ -19,4 +15,6 @@ namespace WaitTimes.Core.Configuration
         public int End { get; set; }
         public string TimeZoneName { get; set; }
     }
+
+
 }

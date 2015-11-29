@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using WaitTimes.Core.Configuration;
 using WaitTimes.Models.Api;
 
 //using WaitTimes.Common.Config;
@@ -20,12 +21,12 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
 
     public abstract class BaseTimeGathererAdapter : ITimeGathererAdapter
     {
-//        private readonly IConfigReader _configReader;
-//
-//        public BaseTimeGathererAdapter(IConfigReader configReader )
-//        {
-//            _configReader = configReader;
-//        }
+        protected readonly ITypedConfiguration _typedConfiguration;
+
+        protected BaseTimeGathererAdapter(ITypedConfiguration typedConfiguration)
+        {
+            _typedConfiguration = typedConfiguration;
+        }
 
         public List<CurrentTime> CurrentTimes()
         {
@@ -99,7 +100,16 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
             return new TimeSpan(hour, minutes, 0);
         }
 
-        public abstract string Endpoint { get; }
+        public virtual string Endpoint
+        {
+            get
+            {
+                var location = _typedConfiguration.EndpointLocations.EndpointLocation(Source);
+
+                return location.Url;
+            }
+        }
+
         public abstract string Source { get; }
     }
 }

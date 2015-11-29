@@ -8,28 +8,27 @@ namespace WaitTimes.Core.Configuration
 {
     public interface ITypedConfiguration
     {
-        DataConfiguration Data { get; }
+        EndpointLocationReader EndpointLocations { get; }
         ThemeParkScheduleReader ThemeParkSchedule { get; }
         WeatherMapLocationReader WeatherUrls { get; }
     }
 
     public class TypedConfiguration : ITypedConfiguration
     {
-        private DataConfiguration _data;
+        private EndpointLocationReader _endpointLocationReader;
         private ThemeParkScheduleReader _themeParkScheduleReader;
         private WeatherMapLocationReader _weatherMapLocationReader;
 
-
-        public DataConfiguration Data
+        public EndpointLocationReader EndpointLocations
         {
             get
             {
-                if (_data == null)
+                if (_endpointLocationReader == null)
                 {
-                    _data = new DataConfiguration();
+                    _endpointLocationReader = new EndpointLocationReader();
                 }
 
-                return _data;
+                return _endpointLocationReader;
             }
         }
 
@@ -62,7 +61,7 @@ namespace WaitTimes.Core.Configuration
 
     public class WeatherMapLocationReader
     {
-        private string ConfigFileFullPath;
+        private string ConfigFileFullPath;  
         private readonly WeatherLocations WeatherLocations;
 
         public WeatherMapLocationReader()
@@ -129,7 +128,38 @@ namespace WaitTimes.Core.Configuration
         }        
     }
 
-    
+    public class EndpointLocationReader
+    {
+        private readonly EndpointLocations _endpointLocations;
+
+        public EndpointLocationReader()
+        {
+            var fileName = ConfigurationManager.AppSettings["EndpointLocationsJson"];
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            var configFileFullPath = Path.Combine(currentDirectory, fileName);
+
+            if (File.Exists(configFileFullPath))
+            {
+                using (var sr = new StreamReader(configFileFullPath))
+                {
+                    var rawJson = sr.ReadToEnd();
+                    
+                    _endpointLocations = JsonConvert.DeserializeObject<EndpointLocations>(rawJson);
+                }
+            }
+
+        }
+
+        public EndpointLocation EndpointLocation(string key)
+        {
+            var foundSchedule = _endpointLocations.Endpoints.FirstOrDefault(x => x.Key == key);
+
+            return foundSchedule;
+        }
+    }
+
+
     public class DataConfiguration
     {
         

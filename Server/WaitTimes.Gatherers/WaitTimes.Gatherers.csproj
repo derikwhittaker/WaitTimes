@@ -73,6 +73,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaitTimes.Core\WaitTimes.Core.csproj">
+      <Project>{74495757-75C0-466F-BC38-6D95E1709D6A}</Project>
+      <Name>WaitTimes.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaitTimes.Models\WaitTimes.Models.csproj">
       <Project>{bf281a71-2313-4120-8eca-5f140d71dcc0}</Project>
       <Name>WaitTimes.Models</Name>

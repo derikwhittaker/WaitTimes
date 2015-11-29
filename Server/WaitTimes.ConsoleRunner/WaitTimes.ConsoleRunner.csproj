@@ -51,6 +51,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ConfigurationData\EndpointLocations.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ConfigurationData\WatherLocationMap.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

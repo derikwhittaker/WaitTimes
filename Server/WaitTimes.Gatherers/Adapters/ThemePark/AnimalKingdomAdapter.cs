@@ -1,3 +1,5 @@
+using WaitTimes.Core.Configuration;
+
 namespace WaitTimes.Gatherers.Adapters.ThemePark
 {
     public interface IAnimalKingdomAdapter : ITimeGathererAdapter
@@ -7,9 +9,13 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
 
     public class AnimalKingdomAdapter : BaseTimeGathererAdapter, IAnimalKingdomAdapter
     {
-
-        public override string Endpoint => "http://localhost:3000/api/animalKingdom";
+        public AnimalKingdomAdapter(ITypedConfiguration typedConfiguration) : base(typedConfiguration)
+        {
+        }
+        
 
         public override string Source => "AnimalKingdom";
+
+    
     }
 }

@@ -1,0 +1,36 @@
+﻿{
+    "Endpoints": [
+        {
+            "Key": "AnimalKingdom",
+            "Url": "http://localhost:3000/api/animalKingdom"
+        },
+        {
+            "Key": "WaltDisney Studios",
+            "Url": "http://localhost:3000/api/waltDisneyStudios"
+        },
+        {
+            "Key": "MagicKingdom",
+            "Url": "http://localhost:3000/api/magicKingdom"
+        },
+        {
+            "Key": "HollywoodStudios",
+            "Url": "http://localhost:3000/api/hollywoodStudios"
+        },
+        {
+            "Key": "Epcot",
+            "Url": "http://localhost:3000/api/epcot"
+        },
+        {
+            "Key": "DisneyLand Paris",
+            "Url": "http://localhost:3000/api/disneyLandParis"
+        },
+        {
+            "Key": "DisneyLand",
+            "Url": "http://localhost:3000/api/disneyLand"
+        },
+        {
+            "Key": "CaliforniaAdventure",
+            "Url": "http://localhost:3000/api/californiaAdventure"
+        }
+    ]
+}

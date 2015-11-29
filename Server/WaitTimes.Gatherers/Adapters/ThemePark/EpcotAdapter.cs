@@ -1,3 +1,5 @@
+using WaitTimes.Core.Configuration;
+
 namespace WaitTimes.Gatherers.Adapters.ThemePark
 {
 
@@ -9,7 +11,9 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
     public class EpcotAdapter : BaseTimeGathererAdapter, IEpcotAdapter
     {
 
-        public override string Endpoint => "http://localhost:3000/api/epcot";
+        public EpcotAdapter(ITypedConfiguration typedConfiguration) : base(typedConfiguration)
+        {
+        }
 
         public override string Source => "Epcot";
     }

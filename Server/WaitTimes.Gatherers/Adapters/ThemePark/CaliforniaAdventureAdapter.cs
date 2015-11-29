@@ -1,3 +1,5 @@
+using WaitTimes.Core.Configuration;
+
 namespace WaitTimes.Gatherers.Adapters.ThemePark
 {
 
@@ -8,8 +10,9 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
 
     public class CaliforniaAdventureAdapter : BaseTimeGathererAdapter, ICaliforniaAdventureAdapter
     {
-
-        public override string Endpoint => "http://localhost:3000/api/californiaAdventure";
+        public CaliforniaAdventureAdapter(ITypedConfiguration typedConfiguration) : base(typedConfiguration)
+        {
+        }
 
         public override string Source => "CaliforniaAdventure";
     }

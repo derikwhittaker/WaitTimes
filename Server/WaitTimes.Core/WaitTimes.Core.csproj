@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\EndpointLocations.cs" />
     <Compile Include="Configuration\ThemeParkSchedules.cs" />
     <Compile Include="Configuration\TypedConfiguration.cs" />
     <Compile Include="Configuration\WeatherLocations.cs" />
