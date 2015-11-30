@@ -69,12 +69,12 @@ namespace WaitTimes.Services.ThemeParks
             var themeParkSchedule = _typedConfiguration.ThemeParkSchedule.ThemeParkSchedule(zipCode);
             if (themeParkSchedule == null) { return true; }
 
-            var utcNow = DateTime.UtcNow;
+            var utcNow = DateTime.Now;
             var start = new DateTime(utcNow.Year, utcNow.Month, utcNow.Day, themeParkSchedule.Start, 0, 0);
             var end = new DateTime(utcNow.Year, utcNow.Month, utcNow.Day, themeParkSchedule.End, 0, 0);
 
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById(themeParkSchedule.TimeZoneName);
-            var convertedTimeZone = TimeZoneInfo.ConvertTime(DateTime.UtcNow, timeZone);
+            var convertedTimeZone = TimeZoneInfo.ConvertTime(DateTime.Now, timeZone);
 
             return (convertedTimeZone >= start && convertedTimeZone <= end);
         }
