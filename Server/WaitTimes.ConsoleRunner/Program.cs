@@ -6,6 +6,10 @@ using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
 using WaitTimes.Gatherers.Adapters.Weather;
 using WaitTimes.Persistance;
+using WaitTimes.Queue;
+using WaitTimes.Queue.Messages;
+using WaitTimes.Queue.Publishers;
+using WaitTimes.Queue.Subscribers;
 using WaitTimes.Services;
 using WaitTimes.Services.ThemeParks;
 
@@ -18,13 +22,23 @@ namespace WaitTimes.ConsoleRunner
             var currentDir = Directory.GetCurrentDirectory();
 
             var container = SetupIoC();
-            var interval = new TimeSpan(0, 15, 0).TotalMilliseconds; // 15 min
+//            var interval = new TimeSpan(0, 15, 0).TotalMilliseconds; // 15 min
+//
+//            var autoEvent = new AutoResetEvent(false);
+//            var gatherCallback = container.Resolve<GatherCallback>(); //new GatherCallback();
+//
+//            var timer = new Timer(gatherCallback.CheckStatus, autoEvent, 1000, (int)interval);
 
-            var autoEvent = new AutoResetEvent(false);
-            var gatherCallback = container.Resolve<GatherCallback>(); //new GatherCallback();
+            var subscriber = container.Resolve<IParkRecalculationSubscriber>();
+            var publisher = container.Resolve<IParkRecalculationPublisher>();
 
-            var timer = new Timer(gatherCallback.CheckStatus, autoEvent, 1000, (int)interval);
+            subscriber.Subscribe();
 
+            publisher.Publish(new RecalculationRequestMessage
+            {
+                WaitTimeId = 123,
+                MessageDateTime = DateTime.Now
+            });
 
             Console.WriteLine("Any key to exit");
             Console.ReadLine();
@@ -44,6 +58,7 @@ namespace WaitTimes.ConsoleRunner
             builder.RegisterModule(new DisneyLandIoCModule());
             builder.RegisterModule(new PersistanceIoCModule());
             builder.RegisterModule(new CoreIoCModule());
+            builder.RegisterModule(new QueueIoCModule());
 
 
             builder.RegisterInstance(typedConfiguration).As<ITypedConfiguration>().ExternallyOwned();

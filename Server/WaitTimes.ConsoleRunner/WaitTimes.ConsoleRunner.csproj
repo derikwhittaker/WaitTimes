@@ -75,6 +75,10 @@
       <Project>{3d50080f-456e-4a7a-a4ec-9fa102fcb2e5}</Project>
       <Name>WaitTimes.Persistance</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Queue\WaitTimes.Queue.csproj">
+      <Project>{fb154f28-822c-4aec-bc85-3beafe62ce1f}</Project>
+      <Name>WaitTimes.Queue</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaitTimes.Services\WaitTimes.Services.csproj">
       <Project>{cbffbccb-8976-4968-972f-c54ae8ac74ac}</Project>
       <Name>WaitTimes.Services</Name>
