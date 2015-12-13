@@ -14,8 +14,7 @@ function init(app, io) {
             if( data === null ){ return console.error(disneyApiName + " result was null"); }
                      
             httpResult.send(JSON.stringify(data, null, 2));
-        });
-         
+        });         
     };
     
     // Florida

@@ -11,5 +11,11 @@
     "express": "^4.13.3",
     "moment": "^2.10.6",
     "wdwjs": "^1.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-nodemon": "^2.0.4",
+    "jshint": "^2.8.0"
   }
 }

@@ -31,6 +31,10 @@
         {
             "Key": "CaliforniaAdventure",
             "Url": "http://localhost:3000/api/californiaAdventure"
+        },
+        {
+            "Key": "RabbitMQ",
+            "Url": "host=localhost;username=guest;password=got2me2x"
         }
     ]
 }
