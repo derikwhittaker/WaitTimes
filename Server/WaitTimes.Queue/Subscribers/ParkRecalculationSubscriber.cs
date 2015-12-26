@@ -1,4 +1,5 @@
-﻿using WaitTimes.Core.Configuration;
+﻿using System;
+using WaitTimes.Core.Configuration;
 using WaitTimes.Queue.Messages;
 
 namespace WaitTimes.Queue.Subscribers
@@ -19,7 +20,7 @@ namespace WaitTimes.Queue.Subscribers
             Bus.Subscribe<RecalculationRequestMessage>("ParkRecalculationQueue",
                 message =>
                 {
-                    var waitTimeId = message.WaitTimeId;
+                    Console.WriteLine(message);
                 });
         }
     }

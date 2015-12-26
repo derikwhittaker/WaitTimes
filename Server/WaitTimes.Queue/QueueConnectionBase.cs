@@ -1,8 +1,4 @@
-﻿using System;
-using System.Dynamic;
-using System.Runtime;
-using EasyNetQ;
-using EasyNetQ.Events;
+﻿using EasyNetQ;
 using WaitTimes.Core.Configuration;
 
 namespace WaitTimes.Queue

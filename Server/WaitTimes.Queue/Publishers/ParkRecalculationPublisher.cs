@@ -23,6 +23,7 @@ namespace WaitTimes.Queue.Publishers
             try
             {
                 Bus.Publish(message);
+                //AdvancedBus.Publish();
             }
             catch (Exception e)
             {
