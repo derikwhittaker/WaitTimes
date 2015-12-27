@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{107AE1C1-ED39-4BF5-B923-48A7381A4D2C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{13626CDF-48EB-4EDA-AF75-356F236AAD7E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WaitTimes.ConsoleSubscriber</RootNamespace>
-    <AssemblyName>WaitTimes.ConsoleSubscriber</AssemblyName>
+    <RootNamespace>WaitTimes.Recalculation</RootNamespace>
+    <AssemblyName>WaitTimes.Recalculation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -46,39 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recalculation\ParkRecalculationService.cs" />
+    <Compile Include="RecalculationIoCModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="ConfigurationData\EndpointLocations.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ConfigurationData\ThemeParkSchedule.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ConfigurationData\WatherLocationMap.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WaitTimes.Core\WaitTimes.Core.csproj">
-      <Project>{74495757-75C0-466F-BC38-6D95E1709D6A}</Project>
-      <Name>WaitTimes.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\WaitTimes.Queue\WaitTimes.Queue.csproj">
       <Project>{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}</Project>
       <Name>WaitTimes.Queue</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WaitTimes.Recalculation\WaitTimes.Recalculation.csproj">
-      <Project>{13626CDF-48EB-4EDA-AF75-356F236AAD7E}</Project>
-      <Name>WaitTimes.Recalculation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaitTimes.Services\WaitTimes.Services.csproj">
-      <Project>{CBFFBCCB-8976-4968-972F-C54AE8AC74AC}</Project>
-      <Name>WaitTimes.Services</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

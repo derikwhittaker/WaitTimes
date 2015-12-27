@@ -4,6 +4,8 @@ using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
 using WaitTimes.Queue;
 using WaitTimes.Queue.Subscribers;
+using WaitTimes.Recalculation;
+using WaitTimes.Recalculation.Recalculation;
 using WaitTimes.Services;
 using WaitTimes.Services.Recalculation;
 
@@ -15,17 +17,11 @@ namespace WaitTimes.ConsoleSubscriber
         {
             
             var container = SetupIoC();
-
-            var subscriber = container.Resolve<IParkRecalculationSubscriber>();
+            
             var recalculationService = container.Resolve<IParkRecalculationService>();
 
             recalculationService.Subscribe();
-
-            subscriber.Subscribe((message) =>
-            {
-                Console.WriteLine(message);
-            });
-
+            
             Console.WriteLine("Subscriber -- Any key to exit");
             Console.ReadLine();
         }
@@ -39,7 +35,7 @@ namespace WaitTimes.ConsoleSubscriber
             var builder = new ContainerBuilder();
             
             builder.RegisterModule(new CoreIoCModule());
-            builder.RegisterModule(new ServicesIoCModule());
+            builder.RegisterModule(new RecalculationIoCModule());
             builder.RegisterModule(new QueueIoCModule());
 
 

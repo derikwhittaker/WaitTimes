@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WaitTimes.Queue.Messages;
+﻿using WaitTimes.Queue.Messages;
 using WaitTimes.Queue.Subscribers;
 
-namespace WaitTimes.Services.Recalculation
+namespace WaitTimes.Recalculation.Recalculation
 {
     public interface IParkRecalculationService
     {
