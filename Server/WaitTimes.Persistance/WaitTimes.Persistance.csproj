@@ -68,6 +68,7 @@
     <Compile Include="FileStorage\FlatFilePersister.cs" />
     <Compile Include="PersistanceIoCModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Raven\BaseRepository.cs" />
     <Compile Include="Raven\WaitTimesRepository.cs" />
     <Compile Include="Raven\WeatherRepository.cs" />
   </ItemGroup>

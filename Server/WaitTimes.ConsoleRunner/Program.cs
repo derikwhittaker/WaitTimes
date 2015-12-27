@@ -59,7 +59,7 @@ namespace WaitTimes.ConsoleRunner
 
             builder.RegisterType<GatherCallback>();
 
-            builder.RegisterModule(new DisneyLandIoCModule());
+            builder.RegisterModule(new ServicesIoCModule());
             builder.RegisterModule(new PersistanceIoCModule());
             builder.RegisterModule(new CoreIoCModule());
             builder.RegisterModule(new QueueIoCModule());

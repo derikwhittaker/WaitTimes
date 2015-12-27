@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Raven.Client;
-using Raven.Client.Document;
 using WaitTimes.Models.Dto;
 
 namespace WaitTimes.Persistance.Raven
@@ -11,7 +9,7 @@ namespace WaitTimes.Persistance.Raven
     public interface IWaitTimesRepository
     {
         Task<List<CurrentTimeDto>> Save(List<CurrentTimeDto> remoteHostCurrentTimes);
-        CurrentTimeDto Fetch();
+        CurrentTimeDto Fetch(string id);
     }
 
     public class WaitTimesRepository : BaseRepository, IWaitTimesRepository
@@ -57,46 +55,15 @@ namespace WaitTimes.Persistance.Raven
             //            }
         }
 
-        public CurrentTimeDto Fetch()
+        public CurrentTimeDto Fetch(string id)
         {
-            using (IDocumentSession session = Store.OpenSession("WaitTimes"))
+            using (var session = Store.OpenSession("WaitTimes"))
             {
-                //session.Advanced.DocumentQuery<CurrentTimeDto>()
-                var foo = session.Query<CurrentTimeDto>().FirstOrDefault();
 
-                var currentTimeDtos =
-                    session.Query<CurrentTimeDto>().Where(i => i.Id == "fc21a9dc-ae2c-4e8d-93b5-f5877d4f2d7d");
-            }
+                var currentTimeDtos = session.Query<CurrentTimeDto>().FirstOrDefault(i => i.Id == id);
 
-            return null;
-        }
-    }
-
-    public class BaseRepository
-    {
-
-        private Lazy<IDocumentStore> _store;
-
-        public BaseRepository(string database)
-        {
-            Database = database;
-
-            _store = new Lazy<IDocumentStore>(CreateStore);
-        }
-
-        public IDocumentStore Store => _store.Value;
-
-        public string Database { get; private set; }
-
-        private IDocumentStore CreateStore()
-        {
-            IDocumentStore store = new DocumentStore()
-            {
-                Url = "http://localhost:8080",
-                DefaultDatabase = Database
-            }.Initialize();
-
-            return store;
+                return currentTimeDtos;
+            }            
         }
     }
 }

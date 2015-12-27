@@ -56,9 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisneyLandIoCModule.cs" />
+    <Compile Include="ServicesIoCModule.cs" />
     <Compile Include="Models\GatherResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recalculation\ParkRecalculationService.cs" />
     <Compile Include="ThemeParks\AnimalKingdomService.cs" />
     <Compile Include="ThemeParks\BaseThemeParkService.cs" />
     <Compile Include="ThemeParks\DisneyCaliforniaAdventureService.cs" />

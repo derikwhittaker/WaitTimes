@@ -71,6 +71,10 @@
       <Project>{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}</Project>
       <Name>WaitTimes.Queue</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Services\WaitTimes.Services.csproj">
+      <Project>{CBFFBCCB-8976-4968-972F-C54AE8AC74AC}</Project>
+      <Name>WaitTimes.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

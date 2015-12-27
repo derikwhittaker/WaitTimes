@@ -37,7 +37,7 @@ namespace WaitTimes.Persistance.FileStorage
             throw new NotImplementedException();
         }
 
-        public CurrentTimeDto Fetch()
+        public CurrentTimeDto Fetch(string id)
         {
             throw new NotImplementedException();
         }

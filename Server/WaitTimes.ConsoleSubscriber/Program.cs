@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autofac;
 using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
 using WaitTimes.Queue;
 using WaitTimes.Queue.Subscribers;
+using WaitTimes.Services;
+using WaitTimes.Services.Recalculation;
 
 namespace WaitTimes.ConsoleSubscriber
 {
@@ -19,6 +17,9 @@ namespace WaitTimes.ConsoleSubscriber
             var container = SetupIoC();
 
             var subscriber = container.Resolve<IParkRecalculationSubscriber>();
+            var recalculationService = container.Resolve<IParkRecalculationService>();
+
+            recalculationService.Subscribe();
 
             subscriber.Subscribe((message) =>
             {
@@ -38,6 +39,7 @@ namespace WaitTimes.ConsoleSubscriber
             var builder = new ContainerBuilder();
             
             builder.RegisterModule(new CoreIoCModule());
+            builder.RegisterModule(new ServicesIoCModule());
             builder.RegisterModule(new QueueIoCModule());
 
 

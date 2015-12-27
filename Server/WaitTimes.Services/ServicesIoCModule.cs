@@ -4,7 +4,7 @@ using WaitTimes.Services.ThemeParks;
 
 namespace WaitTimes.Services
 {
-    public class DisneyLandIoCModule : Autofac.Module
+    public class ServicesIoCModule : Autofac.Module
     {
         protected override void Load(ContainerBuilder builder)
         {
