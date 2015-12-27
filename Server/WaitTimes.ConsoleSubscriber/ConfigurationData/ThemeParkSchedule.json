@@ -1,0 +1,22 @@
+﻿{
+    "Schedules": [
+        {
+            "ZipCode": "32830",
+            "TimeZoneName": "Eastern Standard Time",
+            "Start": "07",
+            "End": "22"
+        },
+        {
+            "ZipCode": "77700",
+            "TimeZoneName": "Central European Standard Time",
+            "Start": "07",
+            "End": "22"
+        },
+        {
+            "ZipCode": "92802",
+            "TimeZoneName": "Pacific Standard Time",
+            "Start": "07",
+            "End": "22"
+        }
+    ]
+}

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitTimes.ConsoleRunner", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitTimes.Queue", "WaitTimes.Queue\WaitTimes.Queue.csproj", "{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitTimes.ConsoleSubscriber", "WaitTimes.ConsoleSubscriber\WaitTimes.ConsoleSubscriber.csproj", "{107AE1C1-ED39-4BF5-B923-48A7381A4D2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{107AE1C1-ED39-4BF5-B923-48A7381A4D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107AE1C1-ED39-4BF5-B923-48A7381A4D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107AE1C1-ED39-4BF5-B923-48A7381A4D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107AE1C1-ED39-4BF5-B923-48A7381A4D2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

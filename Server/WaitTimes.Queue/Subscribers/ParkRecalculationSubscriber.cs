@@ -6,7 +6,7 @@ namespace WaitTimes.Queue.Subscribers
 {
     public interface IParkRecalculationSubscriber
     {
-        void Subscribe();
+        void Subscribe(Action<RecalculationRequestMessage> callback);
     }
 
     public class ParkRecalculationSubscriber : QueueConnectionBase, IParkRecalculationSubscriber
@@ -15,13 +15,9 @@ namespace WaitTimes.Queue.Subscribers
         {
         }
 
-        public void Subscribe()
+        public void Subscribe(Action<RecalculationRequestMessage> callback )
         {
-            Bus.Subscribe<RecalculationRequestMessage>("ParkRecalculationQueue",
-                message =>
-                {
-                    Console.WriteLine(message);
-                });
+            Bus.Subscribe<RecalculationRequestMessage>("ParkRecalculationQueue", callback.Invoke);
         }
     }
 }
