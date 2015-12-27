@@ -32,7 +32,12 @@ namespace WaitTimes.Persistance.FileStorage
             return Task.FromResult(0);
         }
 
-        public Task Save(List<CurrentTimeDto> remoteHostCurrentTimes)
+        public Task<List<CurrentTimeDto>> Save(List<CurrentTimeDto> remoteHostCurrentTimes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CurrentTimeDto Fetch()
         {
             throw new NotImplementedException();
         }

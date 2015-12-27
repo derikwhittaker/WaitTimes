@@ -71,6 +71,10 @@
       <Project>{286c07db-a360-40da-a035-f67e5f51e3af}</Project>
       <Name>WaitTimes.Gatherers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Models\WaitTimes.Models.csproj">
+      <Project>{BF281A71-2313-4120-8ECA-5F140D71DCC0}</Project>
+      <Name>WaitTimes.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaitTimes.Persistance\WaitTimes.Persistance.csproj">
       <Project>{3d50080f-456e-4a7a-a4ec-9fa102fcb2e5}</Project>
       <Name>WaitTimes.Persistance</Name>

@@ -6,6 +6,7 @@ namespace WaitTimes.Models.Dto
 {
     public class CurrentTimeDto
     {
+        public string Id { get; set; }
         public string RideName { get; set; }
         public bool IsOpened { get; set; }
         public int WaitTime { get; set; }

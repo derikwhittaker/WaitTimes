@@ -9,7 +9,7 @@ namespace WaitTimes.Queue.Messages
     
     public class RecalculationRequestMessage
     {
-        public int WaitTimeId { get; set; }
+        public string WaitTimeId { get; set; }
 
         public DateTime MessageDateTime { get; set; }
 

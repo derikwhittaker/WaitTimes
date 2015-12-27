@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WaitTimes.Persistance.Raven;
+using WaitTimes.Queue.Messages;
+using WaitTimes.Queue.Publishers;
 using WaitTimes.Services.Weather;
 
 namespace WaitTimes.Services.ThemeParks
@@ -15,10 +17,12 @@ namespace WaitTimes.Services.ThemeParks
     {
         private readonly IWeatherService _weatherService;
         private readonly IWaitTimesRepository _persister;
+        private readonly IParkRecalculationPublisher _parkRecalculationPublisher;
         private IList<IThemeParkService> _themeParkServices = new List<IThemeParkService>();
 
         public ThemeParkOrchestrator(IWeatherService weatherService,
             IWaitTimesRepository persister,
+            IParkRecalculationPublisher parkRecalculationPublisher,
             IAnimalKingdomService animalKingdomService,
             ICaliforniaAdventureService californiaAdventureService,
             IDisneyLandService disneyLandService,
@@ -30,6 +34,7 @@ namespace WaitTimes.Services.ThemeParks
         {
             _weatherService = weatherService;
             _persister = persister;
+            _parkRecalculationPublisher = parkRecalculationPublisher;
             _themeParkServices.Add(animalKingdomService);
             _themeParkServices.Add(californiaAdventureService);
             _themeParkServices.Add(disneyLandService);
@@ -53,7 +58,14 @@ namespace WaitTimes.Services.ThemeParks
 
                     Console.WriteLine($"Writing {results.CurrentTimes.Count} records for Souce {results.Source} and Zip Code {results.ZipCode}");
 
-                    await _persister.Save(results.CurrentTimes);
+                    var resultDtos = await _persister.Save(results.CurrentTimes);
+
+                    // publish in order to update stats
+                    resultDtos.ForEach( d => _parkRecalculationPublisher.Publish(new RecalculationRequestMessage
+                    {
+                        WaitTimeId = d.Id,
+                        MessageDateTime = d.DateTime.DateTime
+                    }));
                 }
                 catch (Exception e)
                 {
