@@ -45,10 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recalculation\ParkRecalculationService.cs" />
+    <Compile Include="Recalculation\RideRecalculationService.cs" />
     <Compile Include="RecalculationIoCModule.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WaitTimes.Models\WaitTimes.Models.csproj">
+      <Project>{BF281A71-2313-4120-8ECA-5F140D71DCC0}</Project>
+      <Name>WaitTimes.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Persistance\WaitTimes.Persistance.csproj">
+      <Project>{3D50080F-456E-4A7A-A4EC-9FA102FCB2E5}</Project>
+      <Name>WaitTimes.Persistance</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WaitTimes.Queue\WaitTimes.Queue.csproj">
       <Project>{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}</Project>
       <Name>WaitTimes.Queue</Name>

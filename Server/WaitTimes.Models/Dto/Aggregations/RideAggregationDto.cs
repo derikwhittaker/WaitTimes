@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WaitTimes.Models.Dto.Aggregations
+{
+    public class RideAggregationDto
+    {
+        public string Id { get; set; }
+
+        public string RideName { get; set; }
+
+        public DateTime LastUpdated { get; set; }
+
+        public TimeAggregationDto TimeAggregationDto { get; set; } = new TimeAggregationDto();
+    }
+
+    public class TimeAggregationDto
+    {
+
+        public long TotalWaitTime { get; set; }
+        public int TotalIterations { get; set; }
+        public double TotalAverageWaitTime { get; set; }
+
+    }
+}

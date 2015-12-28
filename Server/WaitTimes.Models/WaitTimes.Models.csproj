@@ -59,6 +59,7 @@
     <Compile Include="Api\CurrentTime.cs" />
     <Compile Include="Api\CurrentWeatherDto.cs" />
     <Compile Include="Api\WeatherResult.cs" />
+    <Compile Include="Dto\Aggregations\RideAggregationDto.cs" />
     <Compile Include="Dto\CurrentTimeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

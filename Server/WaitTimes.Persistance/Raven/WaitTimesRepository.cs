@@ -57,10 +57,10 @@ namespace WaitTimes.Persistance.Raven
 
         public CurrentTimeDto Fetch(string id)
         {
-            using (var session = Store.OpenSession("WaitTimes"))
+            using (var session = Store.OpenSession(Database))
             {
 
-                var currentTimeDtos = session.Query<CurrentTimeDto>().FirstOrDefault(i => i.Id == id);
+                var currentTimeDtos = session.Load<CurrentTimeDto>(id);
 
                 return currentTimeDtos;
             }            

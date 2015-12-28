@@ -8,7 +8,7 @@ namespace WaitTimes.Recalculation
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterAssemblyTypes(typeof(IParkRecalculationService).GetTypeInfo().Assembly).AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(typeof(IRideRecalculationService).GetTypeInfo().Assembly).AsImplementedInterfaces();
         }
     }
 }

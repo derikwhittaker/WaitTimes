@@ -2,12 +2,11 @@
 using Autofac;
 using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
+using WaitTimes.Persistance;
 using WaitTimes.Queue;
-using WaitTimes.Queue.Subscribers;
 using WaitTimes.Recalculation;
 using WaitTimes.Recalculation.Recalculation;
-using WaitTimes.Services;
-using WaitTimes.Services.Recalculation;
+
 
 namespace WaitTimes.ConsoleSubscriber
 {
@@ -18,7 +17,7 @@ namespace WaitTimes.ConsoleSubscriber
             
             var container = SetupIoC();
             
-            var recalculationService = container.Resolve<IParkRecalculationService>();
+            var recalculationService = container.Resolve<IRideRecalculationService>();
 
             recalculationService.Subscribe();
             
@@ -36,6 +35,7 @@ namespace WaitTimes.ConsoleSubscriber
             
             builder.RegisterModule(new CoreIoCModule());
             builder.RegisterModule(new RecalculationIoCModule());
+            builder.RegisterModule(new PersistanceIoCModule());
             builder.RegisterModule(new QueueIoCModule());
 
 
