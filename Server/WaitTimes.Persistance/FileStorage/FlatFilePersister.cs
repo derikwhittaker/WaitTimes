@@ -14,8 +14,8 @@ namespace WaitTimes.Persistance.FileStorage
         private const string RootFolderPath = @"d:\Dev.Personal\WaitTimes\Data\{0}";
         public Task Save(CurrentTimeResult currentTimeResult)
         {
-            var finalFolderPath = string.Format(RootFolderPath, currentTimeResult.Source);
-            var fileName = CreateFileName(currentTimeResult.Source);
+            var finalFolderPath = string.Format(RootFolderPath, currentTimeResult.ParkName);
+            var fileName = CreateFileName(currentTimeResult.ParkName);
             var fullPath = Path.Combine(finalFolderPath, fileName);
 
             if (!Directory.Exists(finalFolderPath))

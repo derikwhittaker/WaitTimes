@@ -1,3 +1,4 @@
+using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
 
 namespace WaitTimes.Gatherers.Adapters.ThemePark
@@ -15,6 +16,7 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
         }
 
         public override string Source => "CaliforniaAdventure";
+        public override ParkNames ParkId => ParkNames.CaliforniaAdventure;
     }
 
 }

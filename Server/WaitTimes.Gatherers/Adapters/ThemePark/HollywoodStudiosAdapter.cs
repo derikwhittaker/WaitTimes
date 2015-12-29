@@ -1,3 +1,4 @@
+using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
 
 namespace WaitTimes.Gatherers.Adapters.ThemePark
@@ -16,5 +17,6 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
         }
 
         public override string Source => "HollywoodStudios";
+        public override ParkNames ParkId => ParkNames.Epcot;
     }
 }

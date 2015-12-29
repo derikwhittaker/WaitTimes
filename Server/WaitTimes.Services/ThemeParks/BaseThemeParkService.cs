@@ -54,7 +54,9 @@ namespace WaitTimes.Services.ThemeParks
                     WaitTime = currentTime.WaitTime.TimeInMinutes(),
                     FastPassTime = currentTime.FastPass,
                     DateTime = new DateTimeDto(dateTimeRawUtc, time),
-                    Weather = weatherResult
+                    Weather = weatherResult,
+                    ParkId = remoteHostCurrentTimes.ParkId,
+                    ParkName = remoteHostCurrentTimes.ParkName
 
                 };
 

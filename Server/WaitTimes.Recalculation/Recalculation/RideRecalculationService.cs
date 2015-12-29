@@ -40,7 +40,7 @@ namespace WaitTimes.Recalculation.Recalculation
             // fetch aggregation record
             var aggregationDto = FetchAggregation(currentTime);
 
-            Console.WriteLine($"{aggregationDto.RideName} was pulled from queue.");
+            Console.WriteLine($"{aggregationDto.RideName} - {message.MessageDateTime} was pulled from queue @ {DateTime.Now}.");
 
             // fetch data for each recalculation metric
 
@@ -57,7 +57,9 @@ namespace WaitTimes.Recalculation.Recalculation
             var aggregationDto = _aggregationRepository.Fetch(currentTime.RideName) ?? new RideAggregationDto
             {
                 Id = Guid.NewGuid().ToString(),
-                RideName = currentTime.RideName
+                RideName = currentTime.RideName,
+                ParkName = currentTime.ParkName,
+                ParkId = currentTime.ParkId
             };
 
             return aggregationDto;

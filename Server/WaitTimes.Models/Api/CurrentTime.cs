@@ -32,7 +32,8 @@ namespace WaitTimes.Models.Api
 
         public WeatherResult WeatherResults { get; set; }
 
-        public string Source { get; set; }
+        public string ParkName { get; set; }
+        public int ParkId { get; set; }
     }
 
     public class DateTimeResult

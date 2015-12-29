@@ -54,6 +54,7 @@
     <Compile Include="Configuration\TypedConfiguration.cs" />
     <Compile Include="Configuration\WeatherLocations.cs" />
     <Compile Include="CoreIoCModule.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Extensions\CurrentTimeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

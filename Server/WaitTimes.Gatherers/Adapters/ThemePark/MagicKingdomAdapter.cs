@@ -1,3 +1,4 @@
+using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
 using WaitTimes.Gatherers.Adapters.ThemePark;
 
@@ -16,5 +17,7 @@ namespace WaitTimes.Gatherers.Adapters
         }
 
         public override string Source => "MagicKingdom";
+        public override ParkNames ParkId => ParkNames.MagicKingdom;
+
     }
 }

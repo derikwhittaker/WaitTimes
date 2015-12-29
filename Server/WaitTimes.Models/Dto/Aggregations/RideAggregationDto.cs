@@ -10,6 +10,9 @@ namespace WaitTimes.Models.Dto.Aggregations
     {
         public string Id { get; set; }
 
+        public int ParkId { get; set; }
+        public string ParkName { get; set; }
+
         public string RideName { get; set; }
 
         public DateTime LastUpdated { get; set; }

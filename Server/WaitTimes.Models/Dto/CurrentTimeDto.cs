@@ -7,13 +7,17 @@ namespace WaitTimes.Models.Dto
     public class CurrentTimeDto
     {
         public string Id { get; set; }
+        public int ParkId { get; set; }
+        public string ParkName { get; set; }
         public string RideName { get; set; }
         public bool IsOpened { get; set; }
         public int WaitTime { get; set; }
         public string FastPassTime { get; set; }
 
+
         public DateTimeDto DateTime { get; set; }
         public CurrentWeatherDto Weather { get; set; }
+
     }
 
     public class DateTimeDto

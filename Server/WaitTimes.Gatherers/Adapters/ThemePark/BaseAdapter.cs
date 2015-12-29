@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
 using WaitTimes.Models.Api;
 
@@ -62,12 +63,13 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
             return new CurrentTimeResult
             {
                 CurrentTimes = currentTimes,
+                ParkId = (int)ParkId,
+                ParkName = Source,
                 DateTimeResult = new DateTimeResult
                 {
                     DateTimeRawUtc = DateTime.UtcNow,
                     Time = currentTime
-                },
-                Source = Source
+                }
             };
         }
 
@@ -111,5 +113,7 @@ namespace WaitTimes.Gatherers.Adapters.ThemePark
         }
 
         public abstract string Source { get; }
+
+        public abstract ParkNames ParkId { get; }
     }
 }

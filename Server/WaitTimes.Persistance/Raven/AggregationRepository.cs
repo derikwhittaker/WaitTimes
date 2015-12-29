@@ -23,9 +23,24 @@ namespace WaitTimes.Persistance.Raven
 
                 var currentTimeDtos = session
                     .Query<RideAggregationDto>()
-                    .FirstOrDefault(i => i.RideName == rideRame);
+                    .Where(i => i.RideName == rideRame).ToList();
 
-                return currentTimeDtos;
+                if (currentTimeDtos.Any())
+                {
+                    if (currentTimeDtos.Count > 1)
+                    {
+                        var currentColor = Console.ForegroundColor;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"Found more than aggregation for {rideRame}");
+                        Console.ForegroundColor = currentColor;
+                    }
+
+                    var currentTIme = currentTimeDtos[0];
+
+                    return currentTIme;
+                }
+
+                return null;
             }
         }
 
