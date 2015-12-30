@@ -26,7 +26,7 @@ namespace WaitTimes.Services.ThemeParks
             if (!CanGatherData(this.LocationZipCode)) { return new GatherResults {ZipCode = LocationZipCode, Source = _serviceAdapter.Source}; }
 
             // fetch new current time from remote host
-            var remoteHostCurrentTimes = await _serviceAdapter.FetchCurrent();
+            var remoteHostCurrentTimes = await FetchCurrentTimes();
 
             var currentTimeDtos = TransformResults(remoteHostCurrentTimes, weatherResult);
             
@@ -36,6 +36,29 @@ namespace WaitTimes.Services.ThemeParks
                 ZipCode = this.LocationZipCode,
                 CurrentTimes = currentTimeDtos
             };
+        }
+
+        private async Task<CurrentTimeResult> FetchCurrentTimes()
+        {
+            var remoteHostCurrentTimes = await _serviceAdapter.FetchCurrent();
+
+            foreach (var currentTime in remoteHostCurrentTimes.CurrentTimes)
+            {
+                currentTime.Name = ScrubName(currentTime.Name);
+            }
+
+            return remoteHostCurrentTimes;
+        }
+
+        private string ScrubName(string name)
+        {
+         
+            name = name.Replace("\"", "")
+                .Replace("«", "")
+                .Replace("»", "")
+                .Trim();
+            
+            return name;
         }
 
 
