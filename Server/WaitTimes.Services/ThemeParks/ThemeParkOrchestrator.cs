@@ -58,7 +58,7 @@ namespace WaitTimes.Services.ThemeParks
 
                     Console.WriteLine($"Writing {results.CurrentTimes.Count} records for Souce {results.Source} and Zip Code {results.ZipCode}");
 
-                    var resultDtos = await _persister.Save(results.CurrentTimes);
+                    var resultDtos = _persister.Save(results.CurrentTimes);
 
                     // publish in order to update stats
                     resultDtos.ForEach( d => _parkRecalculationPublisher.Publish(new RecalculationRequestMessage

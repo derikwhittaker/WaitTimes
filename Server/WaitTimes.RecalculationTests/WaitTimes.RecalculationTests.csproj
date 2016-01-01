@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\xunit.runner.visualstudio.2.2.0-beta1-build1144\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.2.0-beta1-build1144\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{13626CDF-48EB-4EDA-AF75-356F236AAD7E}</ProjectGuid>
+    <ProjectGuid>{629BD609-ED1C-4908-88DD-E128EFE1216B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WaitTimes.Recalculation</RootNamespace>
-    <AssemblyName>WaitTimes.Recalculation</AssemblyName>
+    <RootNamespace>WaitTimes.RecalculationTests</RootNamespace>
+    <AssemblyName>WaitTimes.RecalculationTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,10 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.0.0-beta8-157\lib\net45\Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="FluentAssertions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentAssertions.4.1.1\lib\net45\FluentAssertions.dll</HintPath>
       <Private>True</Private>
@@ -68,28 +67,48 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RideRecalculationServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recalculation\RideRecalculationService.cs" />
-    <Compile Include="RecalculationIoCModule.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\WaitTimes.Models\WaitTimes.Models.csproj">
-      <Project>{BF281A71-2313-4120-8ECA-5F140D71DCC0}</Project>
-      <Name>WaitTimes.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaitTimes.Persistance\WaitTimes.Persistance.csproj">
-      <Project>{3D50080F-456E-4A7A-A4EC-9FA102FCB2E5}</Project>
-      <Name>WaitTimes.Persistance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WaitTimes.Queue\WaitTimes.Queue.csproj">
-      <Project>{FB154F28-822C-4AEC-BC85-3BEAFE62CE1F}</Project>
-      <Name>WaitTimes.Queue</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WaitTimes.Core\WaitTimes.Core.csproj">
+      <Project>{74495757-75c0-466f-bc38-6d95e1709d6a}</Project>
+      <Name>WaitTimes.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Models\WaitTimes.Models.csproj">
+      <Project>{bf281a71-2313-4120-8eca-5f140d71dcc0}</Project>
+      <Name>WaitTimes.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Persistance\WaitTimes.Persistance.csproj">
+      <Project>{3d50080f-456e-4a7a-a4ec-9fa102fcb2e5}</Project>
+      <Name>WaitTimes.Persistance</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Queue\WaitTimes.Queue.csproj">
+      <Project>{fb154f28-822c-4aec-bc85-3beafe62ce1f}</Project>
+      <Name>WaitTimes.Queue</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Recalculation\WaitTimes.Recalculation.csproj">
+      <Project>{13626CDF-48EB-4EDA-AF75-356F236AAD7E}</Project>
+      <Name>WaitTimes.Recalculation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WaitTimes.Services\WaitTimes.Services.csproj">
+      <Project>{cbffbccb-8976-4968-972f-c54ae8ac74ac}</Project>
+      <Name>WaitTimes.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.2.0-beta1-build1144\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.2.0-beta1-build1144\build\net20\xunit.runner.visualstudio.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

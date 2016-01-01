@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitTimes.ConsoleSubscriber
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitTimes.Recalculation", "WaitTimes.Recalculation\WaitTimes.Recalculation.csproj", "{13626CDF-48EB-4EDA-AF75-356F236AAD7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaitTimes.RecalculationTests", "WaitTimes.RecalculationTests\WaitTimes.RecalculationTests.csproj", "{629BD609-ED1C-4908-88DD-E128EFE1216B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{13626CDF-48EB-4EDA-AF75-356F236AAD7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13626CDF-48EB-4EDA-AF75-356F236AAD7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13626CDF-48EB-4EDA-AF75-356F236AAD7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{629BD609-ED1C-4908-88DD-E128EFE1216B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{629BD609-ED1C-4908-88DD-E128EFE1216B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{629BD609-ED1C-4908-88DD-E128EFE1216B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{629BD609-ED1C-4908-88DD-E128EFE1216B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using Autofac;
 using WaitTimes.Core;
 using WaitTimes.Core.Configuration;
+using WaitTimes.Models.Dto;
 using WaitTimes.Persistance;
+using WaitTimes.Persistance.Raven;
 using WaitTimes.Queue;
 using WaitTimes.Recalculation;
 using WaitTimes.Recalculation.Recalculation;
@@ -20,7 +23,7 @@ namespace WaitTimes.ConsoleSubscriber
             var recalculationService = container.Resolve<IRideRecalculationService>();
 
             recalculationService.Subscribe();
-            
+
             Console.WriteLine("Subscriber -- Any key to exit");
             Console.ReadLine();
         }

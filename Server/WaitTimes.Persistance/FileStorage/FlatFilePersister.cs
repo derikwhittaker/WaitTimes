@@ -32,7 +32,7 @@ namespace WaitTimes.Persistance.FileStorage
             return Task.FromResult(0);
         }
 
-        public Task<List<CurrentTimeDto>> Save(List<CurrentTimeDto> remoteHostCurrentTimes)
+        public List<CurrentTimeDto> Save(List<CurrentTimeDto> remoteHostCurrentTimes)
         {
             throw new NotImplementedException();
         }
@@ -41,6 +41,12 @@ namespace WaitTimes.Persistance.FileStorage
         {
             throw new NotImplementedException();
         }
+
+        public void FixBadData()
+        {
+            throw new NotImplementedException();
+        }
+        
 
         private void WriteMessageToConsole(string fullPath)
         {

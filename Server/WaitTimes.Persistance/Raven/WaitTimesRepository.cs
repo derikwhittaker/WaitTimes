@@ -2,14 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Raven.Client;
+using Raven.Client.Linq;
 using WaitTimes.Models.Dto;
 
 namespace WaitTimes.Persistance.Raven
 {
     public interface IWaitTimesRepository
     {
-        Task<List<CurrentTimeDto>> Save(List<CurrentTimeDto> remoteHostCurrentTimes);
+        List<CurrentTimeDto> Save(List<CurrentTimeDto> remoteHostCurrentTimes);
         CurrentTimeDto Fetch(string id);
+
+        void FixBadData();
     }
 
     public class WaitTimesRepository : BaseRepository, IWaitTimesRepository
@@ -19,41 +23,53 @@ namespace WaitTimes.Persistance.Raven
             
         }
 
-        public async Task<List<CurrentTimeDto>> Save(List<CurrentTimeDto> remoteHostCurrentTimes)
+        public List<CurrentTimeDto> Save(List<CurrentTimeDto> remoteHostCurrentTimes)
         {
             using (var session = Store.OpenSession())
             {
                 foreach (var currentTime in remoteHostCurrentTimes)
                 {
-                    var id = Guid.NewGuid().ToString();
-                    currentTime.Id = id;
-                    session.Store(currentTime, id);    
+                    var id =  currentTime.Id;
+                    if (string.IsNullOrEmpty(currentTime.Id))
+                    {
+                        id = Guid.NewGuid().ToString();
+                        currentTime.Id = id;
+                        session.Store(currentTime, id);
+                    }
+
+                    session.Store(currentTime);
                 }
 
                 session.SaveChanges();
             }
 
             return remoteHostCurrentTimes;
-
-            //            var fullEndpoint = "http://localhost:8080/databases/WaitTimes/docs";
-            //            var requestUri = new Uri(fullEndpoint);
-            //
-            //            using (var httpClient = new HttpClient())
-            //            {
-            //                httpClient.BaseAddress = requestUri;
-            //
-            //                foreach (var currentTime in remoteHostCurrentTimes)
-            //                {
-            //
-            //                    var asJson = JsonConvert.SerializeObject(currentTime);
-            //                    var contentPost = new StringContent(asJson, Encoding.UTF8, "application/json");
-            //
-            //                    var postAsync = await httpClient.PostAsync(requestUri, contentPost);
-            //
-            //                }
-            //
-            //            }
+            
         }
+
+        public void FixBadData()
+        {
+            using (var session = Store.OpenSession())
+            {
+                var foundItemsQuery = session.Query<CurrentTimeDto>("IndexByRideName");
+                var foundItems = session.Advanced.Stream<CurrentTimeDto>(foundItemsQuery);
+
+                while (foundItems.MoveNext())
+                {
+                    var document = foundItems.Current.Document;
+
+                    if (document.RideName.Contains("\"") || document.RideName.Contains("«") ||
+                        document.RideName.Contains("»"))
+                    {
+                        document.RideName = document.RideName.Replace("\"", "").Replace("«", "").Replace("»", "").Trim();
+
+                        Save(new List<CurrentTimeDto>() {document});
+                    }
+                    
+                }
+
+            }
+        } 
 
         public CurrentTimeDto Fetch(string id)
         {

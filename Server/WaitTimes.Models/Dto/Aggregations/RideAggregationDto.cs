@@ -23,9 +23,17 @@ namespace WaitTimes.Models.Dto.Aggregations
     public class TimeAggregationDto
     {
 
+        public List<TimeSlotAggregationDto> TimeSlots { get; set; } = new List<TimeSlotAggregationDto>();
+
+    }
+
+    public class TimeSlotAggregationDto
+    {
+
+        public TimeSpan Time { get; set; }
         public long TotalWaitTime { get; set; }
         public int TotalIterations { get; set; }
         public double TotalAverageWaitTime { get; set; }
-
+        public DateTime LastUpdated { get; set; }
     }
 }

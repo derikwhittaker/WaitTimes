@@ -35,7 +35,7 @@ namespace WaitTimes.Recalculation.Recalculation
         public void Recalculate(RecalculationRequestMessage message)
         {
             // fetch core data
-            var currentTime = FetchCurrenTime(message.WaitTimeId);
+            var currentTime = FetchCurrentTime(message.WaitTimeId);
 
             // fetch aggregation record
             var aggregationDto = FetchAggregation(currentTime);
@@ -54,22 +54,46 @@ namespace WaitTimes.Recalculation.Recalculation
 
         private RideAggregationDto FetchAggregation(CurrentTimeDto currentTime)
         {
-            var aggregationDto = _aggregationRepository.Fetch(currentTime.RideName) ?? new RideAggregationDto
+            var aggregationDto = _aggregationRepository.Fetch(currentTime.RideName);
+
+            if (aggregationDto == null)
             {
-                Id = Guid.NewGuid().ToString(),
-                RideName = currentTime.RideName,
-                ParkName = currentTime.ParkName,
-                ParkId = currentTime.ParkId
-            };
+                aggregationDto = new RideAggregationDto
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    RideName = currentTime.RideName,
+                    ParkName = currentTime.ParkName,
+                    ParkId = currentTime.ParkId,
+                    TimeAggregationDto = SetupEmptyTimeAggregation()
+                };
+
+            }
 
             return aggregationDto;
         }
-
-        public CurrentTimeDto FetchCurrenTime(string id)
+        
+        public CurrentTimeDto FetchCurrentTime(string id)
         {
             var currentTimeDto = _waitTimesRepository.Fetch(id);
 
             return currentTimeDto;
+        }
+
+
+        public TimeAggregationDto SetupEmptyTimeAggregation()
+        {
+            var newAggregation = new TimeAggregationDto();
+
+            for (int i = 0; i < 24; i++)
+            {
+                for (int t = 0; t < 4; t++)
+                {
+                    var newTime = new TimeSpan(i, t * 15, 0);
+                    newAggregation.TimeSlots.Add(new TimeSlotAggregationDto { Time = newTime });
+                }
+            }
+            
+            return newAggregation;
         }
     }
 }
